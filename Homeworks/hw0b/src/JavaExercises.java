@@ -1,12 +1,14 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JavaExercises {
 
     /** Returns an array [1, 2, 3, 4, 5, 6] */
     public static int[] makeDice() {
-        // TODO: Fill in this function.
-        return null;
+        int[] dices = {1, 2, 3, 4, 5, 6};
+        return dices;
     }
 
     /** Returns the order depending on the customer.
@@ -14,8 +16,13 @@ public class JavaExercises {
      *  If the customer is Erik, return ["sushi", "pasta", "avocado", "coffee"].
      *  In any other case, return an empty String[] of size 3. */
     public static String[] takeOrder(String customer) {
-        // TODO: Fill in this function.
-        return null;
+        Map<String, String[]> orders = new HashMap<>();
+        orders.put("Ergun", new String[]{"beyti", "pizza", "hamburger", "tea"});
+        orders.put("Erik", new String[]{"sushi", "pasta", "avocado", "coffee"});
+        if (customer.equals("Ergun") || customer.equals("Erik")) {
+            return orders.get(customer);
+        }
+        return new String[3];
     }
 
     /** Returns the positive difference between the maximum element and minimum element of the given array.
