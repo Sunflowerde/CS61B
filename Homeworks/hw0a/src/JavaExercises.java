@@ -40,8 +40,13 @@ public class JavaExercises {
      */
     public static String stutter(String s) {
         String repeat_s = "";
-        
-        return null;
+        int len = s.length();
+        for (int i = 0; i < len; ++i) {
+            for (int j = 0 ; j < 2; ++j) {
+                repeat_s += s.charAt(i);
+            }
+        }
+        return repeat_s;
     }
 
     /**
@@ -54,8 +59,17 @@ public class JavaExercises {
      *   0 if the point lies on an axis.
      */
     public static int quadrant(int x, int y) {
-        // TODO: Fill in this function
-        return 0;
+        if (x > 0 && y > 0) {
+            return 1;
+        } else if (x < 0 && y > 0) {
+            return 2;
+        } else if (x < 0 && y < 0) {
+            return 3;
+        } else if (x > 0 && y < 0) {
+            return 4;
+        } else {
+            return 0;
+        }
     }
 
     public static void main(String[] args) {
