@@ -12,7 +12,12 @@ public class JavaExercises {
      * The first row contains 1 star, the second 2 stars, and so on.
      */
     public static void starTriangle() {
-        // TODO: Fill in this function
+        for (int i = 1; i <= 5; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -20,7 +25,13 @@ public class JavaExercises {
      * Example: printIndexed("hello") -> h4e3l2l1o0
      */
     public static void printIndexed(String s) {
-        // TODO: Fill in this function
+       int len = s.length();
+       for (int i = 0; i < len; ++i) {
+           char c = s.charAt(i);
+           System.out.print(c);
+           System.out.print(len - 1 - i);
+       }
+       System.out.println();
     }
 
     /**
@@ -28,7 +39,8 @@ public class JavaExercises {
      * Example: stutter("hello") -> "hheelllloo"
      */
     public static String stutter(String s) {
-        // TODO: Fill in this function
+        String repeat_s = "";
+        
         return null;
     }
 
