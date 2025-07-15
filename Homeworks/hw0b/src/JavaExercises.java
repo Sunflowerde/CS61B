@@ -28,8 +28,17 @@ public class JavaExercises {
     /** Returns the positive difference between the maximum element and minimum element of the given array.
      *  Assumes array is nonempty. */
     public static int findMinMax(int[] array) {
-        // TODO: Fill in this function.
-        return 0;
+        int min_number = 1000000000;
+        int max_number = -1000000000;
+        for (int x : array) {
+            if (x < min_number) {
+                min_number = x;
+            }
+            if (x > max_number) {
+                max_number = x;
+            }
+        }
+        return max_number - min_number;
     }
 
     /**
@@ -45,8 +54,15 @@ public class JavaExercises {
     }
 
     private static List<Integer> hailstoneHelper(int x, List<Integer> list) {
-        // TODO: Fill in this function.
-        return null;
+        list.add(x);
+        while (x != 1) {
+            if (x % 2 == 0) {
+                x = x / 2;
+            } else {
+                x = x * 3 + 1;
+            }
+            list.add(x);
+        }
+        return list;
     }
-
 }
