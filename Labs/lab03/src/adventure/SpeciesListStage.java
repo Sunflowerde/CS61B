@@ -89,17 +89,19 @@ public class SpeciesListStage implements AdventureStage {
     /**
      * Computes the similarity of two lists. If there is similarity, return 1.
      * If there is no similarity, it should return 0.
-     *
      * Similarity is defined as when listTwo contains all the elements in listOne.
      */
-    public static int arraySimilarity(List<String> listOne, List<String> listTwo) {
+    public static double arraySimilarity(List<String> listOne, List<String> listTwo) {
         List<String> copy = new ArrayList<>(listOne);
-        int similarObjects = 0;
+        double similarObjects = 0;
         for (String o : listTwo) {
             if (copy.contains(o)) {
                 similarObjects++;
                 copy.remove(o);
             }
+        }
+        if (listTwo.isEmpty()) {
+            return 0;
         }
         return similarObjects / listOne.size();
     }
