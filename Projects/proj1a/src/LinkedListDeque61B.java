@@ -56,12 +56,12 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -76,6 +76,18 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T get(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        Node<T> p = sentinel;
+        int count = -1;
+        while (p.next != sentinel) {
+            p = p.next;
+            count += 1;
+            if (count == index) {
+                return p.item;
+            }
+        }
         return null;
     }
 
