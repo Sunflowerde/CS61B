@@ -46,14 +46,20 @@ public class ArrayDeque61BTest {
      }
 
      @Test
-    public void getRecursiveTest() {
-         ArrayDeque61B<Integer> ad = new ArrayDeque61B<>();
-         ad.addFirst(1);
-         ad.addFirst(2);
-         ad.addLast(3);
-         assertThat(ad.getRecursive(4)).isNull();
-         assertThat(ad.getRecursive(-1)).isNull();
-         assertThat(ad.getRecursive(1)).isEqualTo(1);
-         assertThat(ad.getRecursive(2)).isEqualTo(3);
+     public void sizeAndIsEmptyTest() {
+        ArrayDeque61B<Integer> ad = new ArrayDeque61B<>();
+        assertThat(ad.isEmpty()).isTrue();
+        ad.addLast(1);
+        ad.addLast(2);
+        assertThat(ad.size()).isEqualTo(2);
+     }
+
+     @Test
+     public void toListTest() {
+        ArrayDeque61B<Integer> ad = new ArrayDeque61B<>();
+        ad.addLast(1);
+        ad.addLast(3);
+        ad.addFirst(2);
+        assertThat(ad.toList()).containsExactly(2, 1, 3).inOrder();
      }
 }

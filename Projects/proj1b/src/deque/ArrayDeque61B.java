@@ -1,8 +1,10 @@
 package deque;
 
 import net.sf.saxon.expr.Component;
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayDeque61B<T> implements Deque61B<T> {
@@ -39,7 +41,13 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public List<T> toList() {
-        return List.of();
+        List<T> returnList = new ArrayList<>();
+        int step = 0;
+        while (step < size) {
+            returnList.add(get(step));
+            step += 1;
+        }
+        return returnList;
     }
 
     @Override
@@ -76,10 +84,6 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         return items[front];
     }
 
-
-
-
-    
     @Override
     public T getRecursive(int index) {
         if (index < 0 || index >= size) {
@@ -89,6 +93,6 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if (index == 0) {
             return items[front];
         }
-        return items
+        return getRecursive(Math.floorMod(front + 1, items.length));
     }
 }
