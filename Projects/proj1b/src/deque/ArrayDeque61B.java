@@ -25,8 +25,23 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         nextBack = 0;
     }
 
+    private void resize(int newCapacity) {
+        T[] newItems = (T[]) new Object[newCapacity];
+        int first = Math.floorMod(nextFront + 1, items.length);
+        for (int i = 0; i < size; ++i) {
+            newItems[i] = items[first];
+            first = Math.floorMod(first + 1, items.length);
+        }
+        items = newItems;
+        nextFront = items.length - 1;
+        nextBack = size;
+    }
+
     @Override
     public void addFirst(T x) {
+        if (size == items.length) {
+            resize(2 * size);
+        }
         items[nextFront] = x;
         size += 1;
         nextFront = Math.floorMod(nextFront - 1, items.length);
@@ -34,6 +49,9 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public void addLast(T x) {
+        if (size == items.length) {
+            resize(2 * size);
+        }
         items[nextBack] = x;
         size += 1;
         nextBack = Math.floorMod(nextBack + 1, items.length);
@@ -65,11 +83,14 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if (isEmpty()) {
             return null;
         }
-        size -= 1;
+        if (4 * size < items.length) {
+            resize(size / 2);
+        }
         int removeIndex = Math.floorMod(nextFront + 1, items.length);
         nextFront = removeIndex;
         T removeItem = items[removeIndex];
         items[removeIndex] = null;
+        size -= 1;
         return removeItem;
     }
 
@@ -78,11 +99,14 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if (isEmpty()) {
             return null;
         }
-        size -= 1;
+        if (4 * size < items.length) {
+            resize(size / 2);
+        }
         int removeIndex = Math.floorMod(nextBack - 1, items.length);
         T removeItem = items[removeIndex];
         items[removeIndex] = null;
         nextBack = removeIndex;
+        size -= 1;
         return removeItem;
     }
 
@@ -105,3 +129,4 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         throw new UnsupportedOperationException("No need to implement getRecursive for proj1b");
     }
 }
+
