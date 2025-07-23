@@ -5,6 +5,7 @@ import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ArrayDeque61B<T> implements Deque61B<T> {
@@ -83,14 +84,14 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if (isEmpty()) {
             return null;
         }
-        if (4 * size < items.length) {
-            resize(size / 2);
-        }
         int removeIndex = Math.floorMod(nextFront + 1, items.length);
         nextFront = removeIndex;
         T removeItem = items[removeIndex];
         items[removeIndex] = null;
         size -= 1;
+        if (4 * size < items.length && items.length >= 16) {
+            resize(items.length / 2);
+        }
         return removeItem;
     }
 
@@ -99,14 +100,14 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if (isEmpty()) {
             return null;
         }
-        if (4 * size < items.length) {
-            resize(size / 2);
-        }
         int removeIndex = Math.floorMod(nextBack - 1, items.length);
         T removeItem = items[removeIndex];
         items[removeIndex] = null;
         nextBack = removeIndex;
         size -= 1;
+        if (4 * size < items.length && items.length >= 16) {
+            resize(items.length / 2);
+        }
         return removeItem;
     }
 
@@ -128,5 +129,27 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     public T getRecursive(int index) {
         throw new UnsupportedOperationException("No need to implement getRecursive for proj1b");
     }
-}
 
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayDeque61BIterator();
+    }
+
+    private class ArrayDeque61BIterator implements Iterator<T> {
+        int curPos = Math.floorMod(nextFront + 1, items.length);
+        int step = 1;
+
+        @Override
+        public boolean hasNext() {
+            return step <= size;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = items[curPos];
+            step += 1;
+            curPos = Math.floorMod(curPos + 1, items.length);
+            return returnItem;
+        }
+    }
+}
