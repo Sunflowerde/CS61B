@@ -111,4 +111,15 @@ public class ArrayDeque61BTest {
              System.out.println(x);
          }
      }
+
+     @Test
+     public void equalsTest() {
+         ArrayDeque61B<Integer> ad1 = new ArrayDeque61B<>();
+         ArrayDeque61B<Integer> ad2 = new ArrayDeque61B<>();
+         for (int i = 0; i < 20; ++i) {
+             ad1.addLast(i);
+             ad2.addLast(i);
+         }
+         assertThat(ad1).isEqualTo(ad2);
+     }
 }

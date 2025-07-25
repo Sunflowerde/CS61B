@@ -39,6 +39,30 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        // 先检查是否指向同一内存
+        // 再检查是否是同一类型
+        // 如果是的话就可以进行类型转换
+        // 然后就能比较内存大小
+        // 再通过迭代比较每个元素是否相同
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Deque61B<?> other)) {
+            return false;
+        }
+        if (this.size != other.size()) {
+            return false;
+        }
+        for (int i = 0; i < other.size(); ++i) {
+            if (other.get(i) != this.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public void addFirst(T x) {
         if (size == items.length) {
             resize(2 * size);

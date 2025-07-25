@@ -3,10 +3,32 @@ package deque;
 import com.github.javaparser.quality.NotNull;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
 
 public class LinkedListDeque61B<T> implements Deque61B<T> {
+    @Override
+    public boolean equals(Object o) {
+        // 检查是否属于同一内存
+        if (this == o) {
+            return true;
+        }
+        // 检查是否属于 Deque61B 类
+        // 类型转换，确保可以使用类内方法，get, size 等
+        if (!(o instanceof Deque61B<?> other)) {
+            return false;
+        }
+        if (this.size != other.size()) {
+            return false;
+        }
+        for (int i = 0; i < other.size(); ++i) {
+            if (!(this.get(i) == other.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -18,22 +40,6 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
         public LinkedListDeque61BIterator() {
             curPos = sentinel.next;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            // Save time if this and o reference the same object.
-            if (this == o) {
-                return true;
-            }
-            if (o instanceof LinkedListDeque61B otherLinkedList) {
-                if (size != otherLinkedList.size()) {
-                    return false;
-                }
-                for (T x : this) {
-
-                }
-            }
         }
 
         @Override
