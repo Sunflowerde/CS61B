@@ -21,6 +21,22 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         }
 
         @Override
+        public boolean equals(Object o) {
+            // Save time if this and o reference the same object.
+            if (this == o) {
+                return true;
+            }
+            if (o instanceof LinkedListDeque61B otherLinkedList) {
+                if (size != otherLinkedList.size()) {
+                    return false;
+                }
+                for (T x : this) {
+
+                }
+            }
+        }
+
+        @Override
         public boolean hasNext() {
             return curPos != sentinel;
         }
@@ -149,7 +165,13 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         if (index == 0) {
             return sentinel.next.item;
         }
-        sentinel = sentinel.next;
-        return getRecursive(index - 1);
+        return getRecursiveHelper(sentinel.next, index - 1);
+    }
+
+    private T getRecursiveHelper(Node node, int index) {
+        if (index == 0) {
+            return node.item;
+        }
+        return getRecursiveHelper(node.next, index - 1);
     }
 }

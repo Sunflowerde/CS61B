@@ -100,4 +100,15 @@ public class ArrayDeque61BTest {
              assertThat(ad.get(i)).isEqualTo(i);
          }
      }
+
+     @Test
+     public void iterableTest() {
+         ArrayDeque61B<Integer> ad = new ArrayDeque61B<>();
+         for (int i = 0; i < 20; ++i) {
+             ad.addLast(i);
+         }
+         for (int x : ad) {
+             System.out.println(x);
+         }
+     }
 }
