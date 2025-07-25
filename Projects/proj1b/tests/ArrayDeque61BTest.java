@@ -2,6 +2,7 @@ import deque.ArrayDeque61B;
 
 import edu.princeton.cs.algs4.In;
 import jh61b.utils.Reflection;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -121,5 +122,14 @@ public class ArrayDeque61BTest {
              ad2.addLast(i);
          }
          assertThat(ad1).isEqualTo(ad2);
+     }
+
+     @Test
+    public void toStringTest() {
+         ArrayDeque61B<Integer> ad = new ArrayDeque61B<>();
+         for (int i = 0; i < 20; ++i) {
+             ad.addLast(i);
+         }
+         System.out.println(ad.toString());
      }
 }

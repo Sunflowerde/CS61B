@@ -26,4 +26,13 @@ public class LinkedListDeque61BTest {
         }
         assertThat(lld1).isEqualTo(lld2);
     }
+
+    @Test
+    public void toStringTest() {
+        LinkedListDeque61B<Integer> lld = new LinkedListDeque61B<>();
+        for (int i = 0; i < 10; ++i) {
+            lld.addLast(i);
+        }
+        System.out.println(lld.toString());
+    }
 }

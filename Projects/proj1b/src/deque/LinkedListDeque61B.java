@@ -31,6 +31,18 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     }
 
     @Override
+    public String toString() {
+        StringBuilder returnSB = new StringBuilder("[");
+        for (T x : this) {
+            returnSB.append(x);
+            returnSB.append(", ");
+        }
+        returnSB.delete(returnSB.length() - 2, returnSB.length());
+        returnSB.append("]");
+        return returnSB.toString();
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new LinkedListDeque61BIterator();
     }

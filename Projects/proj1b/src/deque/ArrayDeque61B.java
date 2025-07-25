@@ -63,6 +63,18 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     }
 
     @Override
+    public String toString() {
+        StringBuilder returnSB = new StringBuilder("[");
+        for (T x : this) {
+            returnSB.append(x);
+            returnSB.append(", ");
+        }
+        returnSB.delete(returnSB.length() - 2, returnSB.length());
+        returnSB.append("]");
+        return returnSB.toString();
+    }
+
+    @Override
     public void addFirst(T x) {
         if (size == items.length) {
             resize(2 * size);
